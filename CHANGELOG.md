@@ -1,3 +1,23 @@
+# [2.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v1.0.0...v2.0.0) (2023-12-27)
+
+
+### Bug Fixes
+
+* change code 1 ([e0a24ff](https://github.com/TOP-FASHION/test-vercel/commit/e0a24ffd98df1bc93bb8c272c94223fc3a060b9a))
+* change code 2 ([a89e1a6](https://github.com/TOP-FASHION/test-vercel/commit/a89e1a61088d949ff99bd8b694f3ee0339d9794c))
+* change code 3 ([d0261c1](https://github.com/TOP-FASHION/test-vercel/commit/d0261c1dae8c86e3c9bf7417e6b1df235c672d9e))
+* change code 4 ([281013c](https://github.com/TOP-FASHION/test-vercel/commit/281013cb552cd6c9161a45a5ea24335b0a04cd64))
+
+
+### Features
+
+* change code 4 ([6f4e7cb](https://github.com/TOP-FASHION/test-vercel/commit/6f4e7cbd3bfe00a37d3eda62014b1d1fd16d4bac))
+
+
+### BREAKING CHANGES
+
+* New version
+
 # 1.0.0 (2023-12-27)
 
 
