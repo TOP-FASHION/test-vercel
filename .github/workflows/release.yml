@@ -1,0 +1,86 @@
+name: 'Release a new version'
+
+on:
+  workflow_dispatch:
+
+jobs:
+  release:
+    name: 'Create GitHub Release'
+    runs-on: ubuntu-latest
+
+    environment:
+      name: 'production'
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_SCOPE: 1212evgen
+
+    steps:
+    - name: 'Checkout'
+      uses: actions/checkout@v4
+
+    - name: 'Setup Node.js v20'
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+
+    - name: 'Install dependencies'
+      run: npm install --global vercel@33 semantic-release@22 @semantic-release/git@10 @semantic-release/changelog@6
+
+    - name: 'Pull Vercel project settings'
+      run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+
+    - name: 'Build project artifacts'
+      run: |
+        vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+        (cd .vercel/output && zip ../../build.zip . -r)
+
+    - name: 'Generate `semantic-release` config'
+      run: |
+        cat <<EOF | tee .releaserc
+          {
+            "branches": [
+              "+([0-9]).+([0-9]).+([0-9])",
+              "main"
+            ],
+            "plugins": [
+              "@semantic-release/commit-analyzer",
+              "@semantic-release/release-notes-generator",
+              "@semantic-release/changelog",
+              "@semantic-release/npm",
+              "@semantic-release/git",
+              ["@semantic-release/github", {
+                "assets": [
+                  { "path": "build.zip", "label": "Build (zip)" }
+                ]
+              }]
+            ]
+          }
+        EOF
+
+    - name: 'Determine the New Version Number'
+      run: |
+        NEW_VERSION=$(npx semantic-release --dry-run --debug | grep 'next release version is' | sed 's/.*is //')
+        echo "New version number: $NEW_VERSION"
+        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+        
+        if [ -z "$NEW_VERSION" ]; then
+          echo "::warning title=No Release::No relevant changes have been detected. The workflow will be terminated without publishing a new release."
+          exit 1
+        fi
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 'Read the Current Version Number'
+      if: env.NEW_VERSION != ''
+      run: |
+        CURRENT_VERSION=$(jq -r '.version' package.json)
+        echo "Current version number: $CURRENT_VERSION"
+        echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+
+    - name: 'Release'
+      if: env.NEW_VERSION != '' && env.NEW_VERSION != env.CURRENT_VERSION
+      run: npx semantic-release --debug
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

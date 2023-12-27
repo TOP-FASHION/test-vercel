@@ -1,0 +1,55 @@
+name: 'Deploy to pre production'
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version'
+        required: true
+
+env:
+  PRE_PROD_HOST: test-vercel-pre-production.vercel.app
+
+jobs:
+  deploy:
+    name: 'Deploy (pre-production)'
+    runs-on: ubuntu-latest
+
+    environment:
+      name: 'production'
+      url: https://${{ env.PRE_PROD_HOST }}
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_SCOPE: 1212evgen
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node.js v20'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 'Download asset from a specific release version'
+        uses: robinraju/release-downloader@v1.8
+        with:
+          tag: ${{ github.event.inputs.version }}
+          fileName: build.zip
+
+      - name: 'Unpack build archive'
+        run: mkdir .vercel && unzip build.zip -d .vercel/output
+
+      - name: 'Install Vercel CLI'
+        run: npm install --global vercel@latest
+
+      - name: 'Deploy project artifacts to Vercel'
+        id: vercel-deploy
+        run: |
+          deploymentUrl=$(vercel deploy --prod --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }})
+          echo "deployment-url=$deploymentUrl" >> $GITHUB_OUTPUT
+
+      - name: 'Assign domains'
+        run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} ${{ env.PRE_PROD_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}

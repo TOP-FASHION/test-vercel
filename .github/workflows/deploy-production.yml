@@ -1,0 +1,37 @@
+name: 'Deploy to production'
+
+on:
+  workflow_dispatch:
+
+env:
+  PRE_PROD_URL: https://test-vercel-pre-production.vercel.app
+  PROD_HOST: test-vercel-production.vercel.app
+
+jobs:
+  deploy:
+    name: 'Deploy'
+    runs-on: ubuntu-latest
+
+    environment:
+      name: 'production'
+      url: https://${{ env.PROD_HOST }}
+
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+      VERCEL_SCOPE: 1212evgen
+
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Node.js v20'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 'Install Vercel CLI'
+        run: npm install --global vercel@latest
+
+      - name: 'Assign domains'
+        run: vercel alias set ${{ env.PRE_PROD_URL }} ${{ env.PROD_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
