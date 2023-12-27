@@ -1,3 +1,10 @@
+# 1.0.0 (2023-12-27)
+
+
+### Bug Fixes
+
+* change code ([cc05054](https://github.com/TOP-FASHION/test-vercel/commit/cc05054a0a49e9f2821218c1698576aaf21b4d1a))
+
 ## [1.52.3](https://github.com/12evgen/test-vercel/compare/v1.52.2...v1.52.3) (2023-12-27)
 
 
