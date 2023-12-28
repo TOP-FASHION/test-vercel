@@ -19,8 +19,6 @@ jobs:
     steps:
     - name: 'Checkout'
       uses: actions/checkout@v4
-      with:
-        persist-credentials: false
 
     - name: 'Setup Node.js v20'
       uses: actions/setup-node@v4
@@ -28,7 +26,7 @@ jobs:
         node-version: 20
 
     - name: 'Install dependencies'
-      run: npm install --global vercel@33 semantic-release@22 @semantic-release/git@10 @semantic-release/changelog@6
+      run: npm install --global vercel@33 semantic-release@22 @semantic-release/git@10 @semantic-release/changelog@6 @semantic-release/exec@6
 
     - name: 'Pull Vercel project settings'
       run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
@@ -56,31 +54,23 @@ jobs:
                 "assets": [
                   { "path": "build.zip", "label": "Build (zip)" }
                 ]
+              }],
+              ["@semantic-release/exec", {
+                "successCmd": "echo \${ nextRelease.version } > version.txt"
               }]
             ]
           }
-        EOF
-
-    - name: 'Determine the New Version Number'
-      run: |
-        NEW_VERSION=$(npx semantic-release --dry-run --debug | grep 'next release version is' | sed 's/.*is //')
-        echo "New version number: $NEW_VERSION"
-        echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
-        
-        if [ -z "$NEW_VERSION" ]; then
-          echo "::warning title=No Release::No relevant changes have been detected. The workflow will be terminated without publishing a new release."
-         
-        fi
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-    - name: 'Read the Current Version Number'
-      run: |
-        CURRENT_VERSION=$(jq -r '.version' package.json)
-        echo "Current version number: $CURRENT_VERSION"
-        echo "CURRENT_VERSION=$CURRENT_VERSION" >> $GITHUB_ENV
+          EOF
 
     - name: 'Release'
-      run: npx semantic-release --debug
+      run: npx semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: 'Validate release'
+      shell: bash
+      run: >
+        if [[ ! -f version.txt ]]; then
+          echo "version.txt was not created, release aborted" 1>&2;
+          exit 1;
+        fi
