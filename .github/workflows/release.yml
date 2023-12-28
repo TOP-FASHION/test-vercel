@@ -53,9 +53,9 @@ jobs:
             "@semantic-release/npm",
             ["@semantic-release/git", {
               "GIT_AUTHOR_NAME": "12evgen-bot",
-              "GIT_AUTHOR_EMAIL": "12evgen@mail.ru",
+              "GIT_AUTHOR_EMAIL": "155072229+12evgen-bot@users.noreply.github.com",
               "GIT_COMMITTER_NAME": "12evgen-bot",
-              "GIT_COMMITTER_EMAIL": "12evgen@mail.ru",
+              "GIT_COMMITTER_EMAIL": "155072229+12evgen-bot@users.noreply.github.com",
             }],
             ["@semantic-release/github", {
               "assets": [
