@@ -1,3 +1,24 @@
+## [2.1.1](https://github.com/TOP-FASHION/test-vercel/compare/v2.1.0...v2.1.1) (2023-12-29)
+
+
+### Bug Fixes
+
+* update code 1 ([223301b](https://github.com/TOP-FASHION/test-vercel/commit/223301bc97e2c6820b46a3112e3dbdbf6709f30f))
+* update code 10 ([b565499](https://github.com/TOP-FASHION/test-vercel/commit/b5654992da2bdac867814e34382c8a06a3f5913a))
+* update code 11 ([7cead14](https://github.com/TOP-FASHION/test-vercel/commit/7cead145d43a860341fb58f7c16a1a17471de9cf))
+* update code 12 ([a206f6a](https://github.com/TOP-FASHION/test-vercel/commit/a206f6a4e2b0b45a1de7e1dbd38963707b95c5b8))
+* update code 13 ([2085d04](https://github.com/TOP-FASHION/test-vercel/commit/2085d04ed868653aa8df8f490c8bd70899a9a4dc))
+* update code 14 ([ebdcfff](https://github.com/TOP-FASHION/test-vercel/commit/ebdcfff21de27e5dcd4c50a03ec77b85f0c24db4))
+* update code 15 ([c6f8f7a](https://github.com/TOP-FASHION/test-vercel/commit/c6f8f7ac29d3d456d534ba2e385f37858c8d3ef8))
+* update code 2 ([87bc734](https://github.com/TOP-FASHION/test-vercel/commit/87bc734026ce83be95338f0c8894237fab9b134d))
+* update code 3 ([6a991e2](https://github.com/TOP-FASHION/test-vercel/commit/6a991e2f25068fd05222b34cd81e5dab94254db7))
+* update code 4 ([e57b971](https://github.com/TOP-FASHION/test-vercel/commit/e57b9715995fa1b0e1fdb5dae08b039075739166))
+* update code 5 ([bd594e0](https://github.com/TOP-FASHION/test-vercel/commit/bd594e0afe819755af8f8d2822aa00703a08ba3e))
+* update code 6 ([e540ce9](https://github.com/TOP-FASHION/test-vercel/commit/e540ce92f93c9d8eabaa8146e81ec22f001f6c6c))
+* update code 7 ([ad75699](https://github.com/TOP-FASHION/test-vercel/commit/ad75699ac8b5425603376d30c4d0cc4952339db6))
+* update code 8 ([254589b](https://github.com/TOP-FASHION/test-vercel/commit/254589b95e58f6d22f67f5c1cd80fd9a6e806c86))
+* update code 9 ([dab2bc3](https://github.com/TOP-FASHION/test-vercel/commit/dab2bc3cccf0ac72ceacd99b8b5683e672133223))
+
 # [2.1.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.0.0...v2.1.0) (2023-12-27)
 
 
