@@ -68,6 +68,10 @@ jobs:
       run: npx semantic-release --debug
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
+        GIT_AUTHOR_NAME: "12evgen-bot12"
+        GIT_AUTHOR_EMAIL: "155072229+12evgen-bot@users.noreply.github.com12"
+        GIT_COMMITTER_NAME: "12evgen-bot12"
+        GIT_COMMITTER_EMAIL: "155072229+12evgen-bot@users.noreply.github.com12"
 
     - name: 'Validate release'
       shell: bash
