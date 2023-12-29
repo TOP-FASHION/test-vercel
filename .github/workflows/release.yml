@@ -22,6 +22,11 @@ jobs:
       with:
         token: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
 
+    - name: Configure git
+      run: |
+        git config user.name "12evgen-bot"
+        git config user.email "155072229+12evgen-bot@users.noreply.github.com"    
+
     - name: 'Setup Node.js v20'
       uses: actions/setup-node@v4
       with:
