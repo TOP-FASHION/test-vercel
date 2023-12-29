@@ -3,6 +3,8 @@ name: 'Release a new version'
 on:
   workflow_dispatch:
 
+permissions: write-all
+
 jobs:
   release:
     name: 'Create GitHub Release'
@@ -10,8 +12,6 @@ jobs:
 
     environment:
       name: 'production'
-
-    permissions: write-all
 
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
