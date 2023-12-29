@@ -49,9 +49,7 @@ jobs:
             "@semantic-release/release-notes-generator",
             "@semantic-release/changelog",
             "@semantic-release/npm",
-            ["@semantic-release/git", {
-              "GIT_AUTHOR_NAME": "12evgen-bot",
-            }],
+            "@semantic-release/git",
             ["@semantic-release/github", {
               "assets": [
                 { "path": "build.zip", "label": "Build (zip)" }
