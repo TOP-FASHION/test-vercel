@@ -73,7 +73,7 @@ jobs:
     - name: 'Release'
       run: npx semantic-release --debug
       env:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
 
     - name: 'Validate release'
       shell: bash
