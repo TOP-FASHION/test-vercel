@@ -1,3 +1,15 @@
+## [2.3.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.2.0...v2.3.0) (2024-01-03)
+
+
+### Features
+
+* add conventional-changelog-conventionalcommits ([9453725](https://github.com/TOP-FASHION/test-vercel/commit/94537253dc313d2a537b8d3165a899fcb9d034db))
+
+
+### Bug Fixes
+
+* LAST ([3d405d2](https://github.com/TOP-FASHION/test-vercel/commit/3d405d208552b046f94080d9ad9563ac461493b1))
+
 # [2.2.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.1.11...v2.2.0) (2023-12-29)
 
 
