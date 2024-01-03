@@ -1,3 +1,10 @@
+## [2.4.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.3.0...v2.4.0) (2024-01-03)
+
+
+### Features
+
+* return @semantic-release/exec ([9610120](https://github.com/TOP-FASHION/test-vercel/commit/961012061bdf9a64a3c6739fc39d6b295e6af39a))
+
 ## [2.3.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.2.0...v2.3.0) (2024-01-03)
 
 
