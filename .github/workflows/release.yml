@@ -28,7 +28,7 @@ jobs:
         node-version: 20
 
     - name: 'Install dependencies'
-      run: npm install --global vercel@33 semantic-release@22 @semantic-release/git@10 @semantic-release/changelog@6 @semantic-release/exec@6
+      run: npm install --global vercel@33 semantic-release@22 @semantic-release/git@10 @semantic-release/changelog@6 @semantic-release/exec@6 conventional-changelog-conventionalcommits@7
 
     - name: 'Pull Vercel project settings'
       run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
@@ -47,8 +47,16 @@ jobs:
             "main"
           ],
           "plugins": [
-            "@semantic-release/commit-analyzer",
-            "@semantic-release/release-notes-generator",
+            ["@semantic-release/commit-analyzer", {
+              "preset": "conventionalcommits",
+            }],
+            ["@semantic-release/release-notes-generator", {
+              "preset": "conventionalcommits",
+              "presetConfig": {
+                "issuePrefixes": ["AMA-"],
+                "issueUrlFormat": "https://amatechs.atlassian.net/browse/{{prefix}}{{id}}"
+              },
+            }],
             "@semantic-release/changelog",
             "@semantic-release/npm",
             "@semantic-release/git",
@@ -56,9 +64,6 @@ jobs:
               "assets": [
                 { "path": "build.zip", "label": "Build (zip)" }
               ]
-            }],
-            ["@semantic-release/exec", {
-              "successCmd": "echo \${ nextRelease.version } > version.txt"
             }]
           ]
         }
