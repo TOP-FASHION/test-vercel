@@ -66,14 +66,14 @@ jobs:
               ]
             }],
             ["@semantic-release/exec", {
-              "successCmd": "echo \${ nextRelease.version } > version.txt"
+              "successCmd": "echo \${ nextRelease.version } > .release-version"
             }]
           ]
         }
         EOF
 
     - name: 'Release'
-      run: npx semantic-release --debug
+      run: npx semantic-release
       env:
         GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
         GIT_AUTHOR_NAME: "12evgen-bot"
@@ -81,10 +81,6 @@ jobs:
         GIT_COMMITTER_NAME: "12evgen-bot"
         GIT_COMMITTER_EMAIL: "12evgen@mail.ru"
 
-    - name: 'Validate release'
+    - name: 'Check release is successful'
       shell: bash
-      run: >
-        if [[ ! -f version.txt ]]; then
-          echo "version.txt was not created, release aborted" 1>&2;
-          exit 1;
-        fi
+      run: [ -z "$(cat .release-version 2>/dev/null)" ] && echo "Release is not successful!" && exit 1
