@@ -1,3 +1,11 @@
+## [2.6.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.5.7...v2.6.0) (2024-01-04)
+
+
+### Features
+
+* test credentials ([fc561f8](https://github.com/TOP-FASHION/test-vercel/commit/fc561f82535e3bc21c2a9098b5479a866d0d14b6))
+* test credentials 2 ([26fb139](https://github.com/TOP-FASHION/test-vercel/commit/26fb139607de1625acf1bf5e5f9852b20831773e))
+
 ## [2.5.7](https://github.com/TOP-FASHION/test-vercel/compare/v2.5.6...v2.5.7) (2024-01-04)
 
 
