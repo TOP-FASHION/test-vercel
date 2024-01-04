@@ -86,5 +86,5 @@ jobs:
 
       - name: 'Verify release'
         run: |
-          cat .release-version 2> /dev/null | head -n 1 | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' || \
-            (echo "Release is not successful." && exit 1)
+          cat .release-version 2> /dev/null | head -n 1 | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+            || (echo "Release is not successful." && exit 1)
