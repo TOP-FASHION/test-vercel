@@ -28,7 +28,13 @@ jobs:
         node-version: 20
 
     - name: 'Install dependencies'
-      run: npm install --global vercel@33 semantic-release@22 @semantic-release/git@10 @semantic-release/changelog@6 @semantic-release/exec@6 conventional-changelog-conventionalcommits@7
+      run: |
+        npm install --global \
+          vercel@33 semantic-release@22 \
+          @semantic-release/git@10 \
+          @semantic-release/changelog@6 \
+          @semantic-release/exec@6 \
+          conventional-changelog-conventionalcommits@7 \
 
     - name: 'Pull Vercel project settings'
       run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
@@ -82,5 +88,5 @@ jobs:
         GIT_COMMITTER_EMAIL: "12evgen@mail.ru"
 
     - name: 'Check release is successful'
-      shell: bash
-      run: \[ -z "$(cat .release-version 2>/dev/null)" \] && echo "Release is not successful." && exit 1
+      run: |
+        [ -z "$(cat .release-version 2>/dev/null)" ] && echo "Release is not successful." && exit 1
