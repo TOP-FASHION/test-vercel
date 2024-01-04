@@ -86,6 +86,6 @@ jobs:
 
       - name: 'Verify release'
         run: |
-          ls-la && cat .release-version
+          ls -la && cat .release-version
           cat .release-version 2> /dev/null | head -n 1 | grep -E '^\d+\.\d+\.\d+$' || \
             (echo "Release is not successful." && exit 1)
