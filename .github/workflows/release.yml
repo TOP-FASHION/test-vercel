@@ -83,4 +83,4 @@ jobs:
 
     - name: 'Check release is successful'
       shell: bash
-      run: [ -z "$(cat .release-version 2>/dev/null)" ] && echo "Release is not successful!" && exit 1
+      run: [ -z "$(cat .release-version 2>/dev/null)" ] && echo "Release is not successful." && exit 1
