@@ -65,7 +65,7 @@ jobs:
                 { "path": "build.zip", "label": "Build (zip)" }
               ]
             }],
-           ["@semantic-release/exec", {
+            ["@semantic-release/exec", {
               "successCmd": "echo \${ nextRelease.version } > version.txt"
             }]
           ]
