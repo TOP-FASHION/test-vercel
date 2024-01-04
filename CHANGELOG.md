@@ -1,3 +1,10 @@
+## [2.5.3](https://github.com/TOP-FASHION/test-vercel/compare/v2.5.2...v2.5.3) (2024-01-04)
+
+
+### Bug Fixes
+
+* version verification ([AMA-123](https://amatechs.atlassian.net/browse/AMA-123)) ([ba272ca](https://github.com/TOP-FASHION/test-vercel/commit/ba272cadc1853fde79428da33fdf79ec70192b3d))
+
 ## [2.5.2](https://github.com/TOP-FASHION/test-vercel/compare/v2.5.1...v2.5.2) (2024-01-04)
 
 
