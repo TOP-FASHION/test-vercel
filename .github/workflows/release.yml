@@ -17,71 +17,75 @@ jobs:
       VERCEL_SCOPE: 1212evgen
 
     steps:
-    - name: 'Checkout'
-      uses: actions/checkout@v4
-      with:
-        token: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
 
-    - name: 'Setup Node.js v20'
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+      - name: 'Setup Node.js v20'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: 'Install dependencies'
-      run: |
-        npm install --global \
-          vercel@33 semantic-release@22 \
-          @semantic-release/git@10 \
-          @semantic-release/changelog@6 \
-          @semantic-release/exec@6 \
-          conventional-changelog-conventionalcommits@7 \
+      - name: 'Install dependencies'
+        run: |
+          npm install --global \
+            vercel@33 \
+            semantic-release@22 \
+            @semantic-release/git@10 \
+            @semantic-release/changelog@6 \
+            @semantic-release/exec@6 \
+            conventional-changelog-conventionalcommits@7 \
 
-    - name: 'Pull Vercel project settings'
-      run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+      - name: 'Pull Vercel project settings'
+        run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
 
-    - name: 'Build project artifacts'
-      run: |
-        vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
-        (cd .vercel/output && zip ../../build.zip . -r)
+      - name: 'Build project artifacts'
+        run: |
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+          (cd .vercel/output && zip ../../build.zip . -r)
 
-    - name: 'Generate `semantic-release` config'
-      run: |
-        cat <<EOF | tee .releaserc
-        {
-          "branches": [
-            "+([0-9]).+([0-9]).x",
-            "main"
-          ],
-          "plugins": [
-            ["@semantic-release/commit-analyzer", {
-              "preset": "conventionalcommits",
-            }],
-            ["@semantic-release/release-notes-generator", {
-              "preset": "conventionalcommits",
-              "presetConfig": {
-                "issuePrefixes": ["AMA-"],
-                "issueUrlFormat": "https://amatechs.atlassian.net/browse/{{prefix}}{{id}}"
-              },
-            }],
-            "@semantic-release/changelog",
-            "@semantic-release/npm",
-            "@semantic-release/git",
-            ["@semantic-release/github", {
-              "assets": [
-                { "path": "build.zip", "label": "Build (zip)" }
-              ]
-            }],
-            ["@semantic-release/exec", {
-              "successCmd": "echo \${ nextRelease.version } > .release-version"
-            }]
-          ]
-        }
-        EOF
+      - name: 'Generate `semantic-release` config'
+        run: |
+          cat <<EOF | tee .releaserc
+          {
+            "branches": [
+              "main",
+              "+([0-9]).+([0-9]).x"
+            ],
+            "plugins": [
+              ["@semantic-release/commit-analyzer", {
+                "preset": "conventionalcommits",
+              }],
+              ["@semantic-release/release-notes-generator", {
+                "preset": "conventionalcommits",
+                "presetConfig": {
+                  "issuePrefixes": ["AMA-"],
+                  "issueUrlFormat": "https://amatechs.atlassian.net/browse/{{prefix}}{{id}}"
+                },
+              }],
+              "@semantic-release/changelog",
+              "@semantic-release/npm",
+              "@semantic-release/git",
+              ["@semantic-release/github", {
+                "assets": [
+                  { "path": "build.zip", "label": "Build (zip)" }
+                ]
+              }],
+              ["@semantic-release/exec", {
+                "successCmd": "echo \${ nextRelease.version } > .release-version"
+              }]
+            ]
+          }
+          EOF
 
-    - name: 'Release'
-      run: npx semantic-release
-      env:
-        GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
+      - name: 'Release'
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.SEMANTIC_RELEASE_GITHUB_TOKEN }}
 
-    - name: 'Verify release'
-      run: cat .release-version 2> /dev/null | head -n 1 | grep -E '^\d+\.\d+\.\d+$' || echo "Release is not successful." && exit 1
+      - name: 'Verify release'
+        run: |
+          ls-la && cat .release-version
+          cat .release-version 2> /dev/null | head -n 1 | grep -E '^\d+\.\d+\.\d+$' || \
+            (echo "Release is not successful." && exit 1)
