@@ -1,6 +1,6 @@
 {
   "name": "@12evgen/test-vercel",
-  "version": "2.5.5",
+  "version": "2.5.6",
   "private": true,
   "license": "MIT",
   "scripts": {
