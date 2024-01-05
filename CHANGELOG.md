@@ -1,3 +1,16 @@
+## [2.8.2](https://github.com/TOP-FASHION/test-vercel/compare/v2.8.1...v2.8.2) (2024-01-05)
+
+
+### Bug Fixes
+
+* test previous vercel cli 2 ([5096c22](https://github.com/TOP-FASHION/test-vercel/commit/5096c22fc617c79d9276ce05fe17c10fac68da7a))
+* test previous vercel cli 3 ([4ebb7e3](https://github.com/TOP-FASHION/test-vercel/commit/4ebb7e37aa83f1c2cba3ad401689fbac4edd1bae))
+
+
+### Reverts
+
+* revert cli to the working version ([9702d88](https://github.com/TOP-FASHION/test-vercel/commit/9702d88f174578df4fc8ee355cec26d77293292c))
+
 ## [2.8.1](https://github.com/TOP-FASHION/test-vercel/compare/v2.8.0...v2.8.1) (2024-01-05)
 
 
