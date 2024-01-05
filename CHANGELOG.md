@@ -1,3 +1,10 @@
+## [2.6.1](https://github.com/TOP-FASHION/test-vercel/compare/v2.6.0...v2.6.1) (2024-01-05)
+
+
+### Performance Improvements
+
+* perf test ([7b07cce](https://github.com/TOP-FASHION/test-vercel/commit/7b07cce6b0990466828d92fb42004ba455063650))
+
 ## [2.6.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.5.7...v2.6.0) (2024-01-04)
 
 
