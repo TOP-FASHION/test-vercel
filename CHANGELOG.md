@@ -1,3 +1,10 @@
+## [2.7.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.6.1...v2.7.0) (2024-01-05)
+
+
+### Features
+
+* test github app token ([6055f38](https://github.com/TOP-FASHION/test-vercel/commit/6055f382c8d1d3681cad5d29f3832d001c2b85a2))
+
 ## [2.6.1](https://github.com/TOP-FASHION/test-vercel/compare/v2.6.0...v2.6.1) (2024-01-05)
 
 
