@@ -37,7 +37,7 @@ jobs:
       - name: 'Install dependencies'
         run: |
           npm install --global \
-            vercel@32 \
+            vercel@30 \
             semantic-release@22 \
             @semantic-release/git@10 \
             @semantic-release/changelog@6 \
