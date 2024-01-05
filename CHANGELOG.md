@@ -1,3 +1,10 @@
+## [2.8.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.7.0...v2.8.0) (2024-01-05)
+
+
+### Features
+
+* revert GITHUB_TOKEN ([6250e1a](https://github.com/TOP-FASHION/test-vercel/commit/6250e1a45e1e16dd831f788a3f8d046835eacefe))
+
 ## [2.7.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.6.1...v2.7.0) (2024-01-05)
 
 
