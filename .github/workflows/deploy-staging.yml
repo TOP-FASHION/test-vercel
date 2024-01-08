@@ -32,11 +32,6 @@ jobs:
         run: |
           npm install --global \
             vercel@33 \
-            semantic-release@22 \
-            @semantic-release/git@10 \
-            @semantic-release/changelog@6 \
-            @semantic-release/exec@6 \
-            conventional-changelog-conventionalcommits@7 \
 
       - name: 'Pull Vercel Environment Information'
         run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
