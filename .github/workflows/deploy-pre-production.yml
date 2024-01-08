@@ -51,5 +51,8 @@ jobs:
           deploymentUrl=$(vercel deploy --prod --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }})
           echo "deployment-url=$deploymentUrl" >> $GITHUB_OUTPUT
 
+      - name: 'List files'
+        run: ls -R
+
       - name: 'Assign domains'
         run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} ${{ env.PRE_PROD_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
