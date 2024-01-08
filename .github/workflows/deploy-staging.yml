@@ -23,25 +23,25 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v4
 
-      - name: 'Setup Node.js v18'
+      - name: 'Setup Node.js v20'
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: 'Install Vercel CLI'
         run: npm install --global vercel@latest
 
       - name: 'Pull Vercel Environment Information'
-        run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=1212evgen
 
       - name: 'Build project artifacts'
-        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=1212evgen
 
       - name: 'Deploy project artifacts to Vercel'
         id: vercel-deploy
         run: |
-          deploymentUrl=$(vercel deploy --prod --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }})
+          deploymentUrl=$(vercel deploy --prod --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=1212evgen)
           echo "deployment-url=$deploymentUrl" >> $GITHUB_OUTPUT
 
       - name: 'Assign domains'
-        run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} test-vercel-org-stage.vercel.app --token=${{ secrets.VERCEL_TOKEN }}
+        run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} test-vercel-org-stage.vercel.app --token=${{ secrets.VERCEL_TOKEN }} --scope=1212evgen
