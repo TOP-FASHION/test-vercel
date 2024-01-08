@@ -8,7 +8,7 @@ on:
         required: true
 
 env:
-  PRE_PROD_HOST: test-vercel-pre-production.vercel.app
+  PRE_PROD_HOST: test-vercel-org-pre-production.vercel.app
 
 jobs:
   deploy:

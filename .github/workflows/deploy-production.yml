@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  PRE_PROD_URL: https://test-vercel-pre-production.vercel.app
+  PRE_PROD_URL: https://test-vercel-org-production.vercel.app
   PROD_HOST: test-vercel-production.vercel.app
 
 jobs:

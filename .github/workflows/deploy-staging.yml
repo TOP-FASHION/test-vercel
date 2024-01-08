@@ -17,7 +17,7 @@ jobs:
 
     environment:
       name: 'staging'
-      url: https://test-vercel-stage.vercel.app
+      url: https://test-vercel-org-stage.vercel.app
 
     steps:
       - name: 'Checkout'
