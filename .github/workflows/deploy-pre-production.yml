@@ -49,7 +49,7 @@ jobs:
           echo "deployment-url=$deploymentUrl" >> $GITHUB_OUTPUT
 
       - name: 'List files'
-        run: ls -la .vercel
+        run: ls -la
 
       - name: 'Assign domains'
         run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} ${{ env.PRE_PROD_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}

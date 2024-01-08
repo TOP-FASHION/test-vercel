@@ -22,9 +22,6 @@ jobs:
       VERCEL_SCOPE: 1212evgen
 
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@v4
-
       - name: 'Setup Node.js v20'
         uses: actions/setup-node@v4
         with:
