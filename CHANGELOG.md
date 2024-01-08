@@ -1,3 +1,10 @@
+## [2.9.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.8.2...v2.9.0) (2024-01-08)
+
+
+### Features
+
+* change domains ([ae34b0b](https://github.com/TOP-FASHION/test-vercel/commit/ae34b0b937f6f22b8d17b4e35938bcd8b0cd4433))
+
 ## [2.8.2](https://github.com/TOP-FASHION/test-vercel/compare/v2.8.1...v2.8.2) (2024-01-05)
 
 
