@@ -13,7 +13,7 @@ env:
 jobs:
   deploy:
     name: 'Deploy (pre-production)'
-    if: ${{ github.actor == '121212evgen' }}
+    if: ${{ github.actor == '12evgen' }}
     runs-on: ubuntu-latest
 
     environment:
