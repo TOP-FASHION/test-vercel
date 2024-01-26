@@ -30,7 +30,7 @@ jobs:
         id: permission
         uses: sushichop/action-repository-permission@v1
         with:
-          required-permission: write
+          required-permission: admin
 
       - name: 'Display information about permission'
         run: |
