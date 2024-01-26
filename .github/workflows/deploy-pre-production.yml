@@ -26,9 +26,10 @@ jobs:
 
     steps:
       - name: 'Check repository permission for user'
-        uses: actions-cool/check-user-permission@main
+        id: permission
+        uses: sushichop/action-repository-permission@v1
         with:
-          require: admin
+          required-permission: admin
 
       - name: 'Setup Node.js v20'
         uses: actions/setup-node@v4
