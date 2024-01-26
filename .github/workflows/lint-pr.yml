@@ -40,8 +40,8 @@ jobs:
           restore-keys: ${{ runner.OS }}-node-
 
       - name: 'Install Dependencies'
-        run: npm ci
         if: steps.cache-npm-cache.outputs.cache-hit != 'true' || steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: npm ci
 
       - name: 'Run ESLint'
         run: npm run lint
@@ -69,6 +69,7 @@ jobs:
           restore-keys: ${{ runner.OS }}-node-
 
       - name: 'Install Dependencies'
+        if: steps.cache-npm-cache.outputs.cache-hit != 'true' || steps.cache-node-modules.outputs.cache-hit != 'true'
         run: npm ci
 
       - name: 'Run TypeScript compiler'
