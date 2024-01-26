@@ -26,6 +26,23 @@ jobs:
       VERCEL_SCOPE: 1212evgen
 
     steps:
+      - name: 'Check repository permission for user'
+        id: permission
+        uses: sushichop/action-repository-permission@v1
+        with:
+          required-permission: write
+
+      - name: 'Display information about permission'
+        run: |
+          echo "A user trying to access is permitted"
+          echo "An actual permission was '${{ steps.permission.outputs.check-result }}'"    
+
+      - name: 'Check repository permission for user'
+        uses: actions-cool/check-user-permission@main
+        id: permission
+        with:
+          require: admin
+
       - name: 'Setup Node.js v20'
         uses: actions/setup-node@v4
         with:
