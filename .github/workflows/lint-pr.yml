@@ -35,7 +35,7 @@ jobs:
         uses: actions/cache@v4
         id: npm-cache
         with:
-          path: ~/.npm
+          path: node_modules
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.OS }}-node-
 
@@ -64,7 +64,7 @@ jobs:
         uses: actions/cache@v4
         id: npm-cache
         with:
-          path: ~/.npm
+          path: node_modules
           key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.OS }}-node-
 
