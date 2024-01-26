@@ -39,7 +39,6 @@ jobs:
 
       - name: 'Check repository permission for user'
         uses: actions-cool/check-user-permission@main
-        id: permission
         with:
           require: admin
 
