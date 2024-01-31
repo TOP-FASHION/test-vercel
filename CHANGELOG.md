@@ -1,3 +1,11 @@
+## [2.11.1](https://github.com/TOP-FASHION/test-vercel/compare/v2.11.0...v2.11.1) (2024-01-31)
+
+
+### Bug Fixes
+
+* fix code ([0a54eec](https://github.com/TOP-FASHION/test-vercel/commit/0a54eec5ef34bbe9cfc6b100f32a3b9353f69d20))
+* fix code patch 2 ([73d0eba](https://github.com/TOP-FASHION/test-vercel/commit/73d0ebace3faba1635a1ed6a03bf08b0e5279803))
+
 ## [2.11.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.10.1...v2.11.0) (2024-01-31)
 
 
