@@ -1,3 +1,10 @@
+## [2.13.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.12.0...v2.13.0) (2024-02-01)
+
+
+### Features
+
+* check new version ([3041a01](https://github.com/TOP-FASHION/test-vercel/commit/3041a01274ee558cc6b14585aa3b474d0d0571ea))
+
 ## [2.12.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.11.1...v2.12.0) (2024-01-31)
 
 
