@@ -7,10 +7,10 @@ on:
       - main
 
 env:
-  STAGING_HOST: test-vercel-org-stage.vercel.app/
+  STAGING_HOST: test-vercel-org-stage.vercel.app
 
 jobs:
-  frontend-build-and-deploy:
+  deploy:
     name: 'Deploy (staging)'
     runs-on: ubuntu-latest
 
@@ -27,7 +27,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v4
 
-      - name: 'Setup Node.js v20'
+      - name: 'Setup Node.js'
         uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -35,7 +35,7 @@ jobs:
       - name: 'Install Vercel CLI'
         run: npm install --global vercel@33.2
 
-      - name: 'Pull Vercel Environment Information'
+      - name: 'Pull Vercel project settings'
         run: vercel pull --environment=preview --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
 
       - name: 'Build project artifacts'
