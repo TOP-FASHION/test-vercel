@@ -1,4 +1,4 @@
-name: 'Deploy to pre production'
+name: 'Deploy to pre-production (Vercel)'
 
 on:
   workflow_dispatch:
@@ -8,7 +8,7 @@ on:
         required: true
 
 env:
-  PRE_PROD_HOST: test-vercel-org-pre-production.vercel.app
+  PRE_PRODUCTION_HOST: test-vercel-org-pre-production.vercel.app
 
 jobs:
   deploy:
@@ -47,15 +47,11 @@ jobs:
       - name: 'Install Vercel CLI'
         run: npm install --global vercel@33.2
 
-      - name: 'List files'
-        run: ls -la
-
       - name: 'Deploy project artifacts to Vercel'
-        id: vercel-deploy
+        id: 'vercel-deploy'
         run: |
-          deploymentUrl=$(vercel deploy --prod --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }})
+          deploymentUrl=$(vercel deploy --prod --prebuilt --skip-domain --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }})
           echo "deployment-url=$deploymentUrl" >> $GITHUB_OUTPUT
 
-
       - name: 'Assign domains'
-        run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} ${{ env.PRE_PROD_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+        run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} ${{ env.PRE_PRODUCTION_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}

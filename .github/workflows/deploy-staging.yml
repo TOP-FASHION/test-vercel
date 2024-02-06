@@ -1,4 +1,4 @@
-name: 'Deploy to staging'
+name: 'Deploy to staging (Vercel)'
 
 on:
   workflow_dispatch:
@@ -6,13 +6,17 @@ on:
     branches:
       - main
 
+env:
+  STAGING_HOST: test-vercel-org-stage.vercel.app/
+
 jobs:
   frontend-build-and-deploy:
     name: 'Deploy (staging)'
     runs-on: ubuntu-latest
 
     environment:
-      name: 'production'
+      name: 'staging'
+      url: https://${{ env.STAGING_HOST }}
 
     env:
       VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -32,17 +36,16 @@ jobs:
         run: npm install --global vercel@33.2
 
       - name: 'Pull Vercel Environment Information'
-        run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+        run: vercel pull --environment=preview --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
 
       - name: 'Build project artifacts'
-        run: |
-          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
 
       - name: 'Deploy project artifacts to Vercel'
-        id: vercel-deploy
+        id: 'vercel-deploy'
         run: |
-          deploymentUrl=$(vercel deploy --prod --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }})
+          deploymentUrl=$(vercel deploy --prebuilt --skip-domain --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }})
           echo "deployment-url=$deploymentUrl" >> $GITHUB_OUTPUT
 
       - name: 'Assign domains'
-        run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} test-vercel-org-stage.vercel.app --token=${{ secrets.VERCEL_TOKEN }} --scope=1212evgen
+        run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} ${{ env.STAGING_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}

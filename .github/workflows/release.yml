@@ -34,7 +34,7 @@ jobs:
         with:
           node-version: 20
 
-      - name: 'Install dependencies'
+      - name: 'Install NPM packages (global)'
         run: |
           npm install --global \
             vercel@33.2 \
@@ -42,7 +42,7 @@ jobs:
             @semantic-release/git@10 \
             @semantic-release/changelog@6 \
             @semantic-release/exec@6 \
-            conventional-changelog-conventionalcommits@7
+            conventional-changelog-conventionalcommits@7 \
 
       - name: 'Pull Vercel project settings'
         run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
