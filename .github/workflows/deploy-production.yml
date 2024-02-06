@@ -28,7 +28,7 @@ jobs:
           node-version: 20
 
       - name: 'Install Vercel CLI'
-        run: npm install --global vercel@33
+        run: npm install --global vercel@33.2
 
       - name: 'Assign domains'
         run: vercel alias set ${{ env.PRE_PROD_URL }} ${{ env.PROD_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}

@@ -45,7 +45,7 @@ jobs:
         run: mkdir .vercel && unzip build.zip -d .vercel/output
 
       - name: 'Install Vercel CLI'
-        run: npm install --global vercel@33
+        run: npm install --global vercel@33.2
 
       - name: 'List files'
         run: ls -la

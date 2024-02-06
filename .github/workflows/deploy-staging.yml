@@ -29,7 +29,7 @@ jobs:
           node-version: 20
 
       - name: 'Install Vercel CLI'
-        run: npm install --global vercel@33
+        run: npm install --global vercel@33.2
 
       - name: 'Pull Vercel Environment Information'
         run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
