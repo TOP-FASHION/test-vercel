@@ -1,3 +1,14 @@
+## [5.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v4.0.0...v5.0.0) (2024-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* set vercel@33.2
+
+### Features
+
+* set vercel@33.2 ([284793e](https://github.com/TOP-FASHION/test-vercel/commit/284793e9e0b1d31fd38cd6d99997de2b4f692235))
+
 ## [4.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v3.0.0...v4.0.0) (2024-02-06)
 
 
