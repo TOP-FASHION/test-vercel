@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({product}: any) {
   return (
     <>
       <Head>
@@ -18,6 +18,15 @@ export default function Home() {
       <main className={`${styles.main} ${inter.className}`}>
         Home page
         <Link href="/other">Other</Link>
+        <div>
+          <h1> Welcome to My blog gallery ssg</h1>
+          {product.map((item: any) => (
+              <div key={item.id}>
+                <a> <h3>{item.title}</h3> </a>
+                <img src={item.url} />
+              </div>
+          ))}
+        </div>
         <div className={styles.description}>
           <p>
             Get started by editing&nbsp;
@@ -114,4 +123,13 @@ export default function Home() {
       </main>
     </>
   )
+}
+
+export const getServerSideProps = async () => {
+  const res = await fetch('https://fakestoreapi.com/products?limit=20');
+  const data = await res.json();
+
+  return{
+    props: {product: data}
+  }
 }

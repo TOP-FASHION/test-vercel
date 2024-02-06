@@ -3,10 +3,21 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from "next/link";
+import {useEffect, useState} from "react";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+    const [state, setState] = useState([]);
+    async function getData() {
+        const res = await fetch('https://fakestoreapi.com/products?limit=8');
+        const data = await res.json();
+        setState(data);
+    }
+
+    useEffect(() => {
+        getData();
+    }, [])
     return (
         <>
             <Head>
@@ -18,6 +29,18 @@ export default function Home() {
             <main className={`${styles.main} ${inter.className}`}>
                 Other page
                 <Link href="/">Home</Link>
+                <div>
+                    {
+                        state.map((e: any) => (
+                            <a key={e.id}>
+                                <h2> {e.title} &rarr;</h2>
+                                <img src={e.image} width={250} height={200}/>
+                                <p>{e.description}</p>
+                                <h3>${e.price}</h3>
+                            </a>
+                        ))
+                    }
+                </div>
                 <div className={styles.description}>
                     <p>
                         Get started by editing&nbsp;
