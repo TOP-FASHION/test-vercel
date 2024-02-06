@@ -5,7 +5,7 @@ on:
 
 env:
   PRE_PRODUCTION_HOST: https://test-vercel-org-pre-production.vercel.app
-  PRODUCTION_HOST: test-vercel-production.vercel.app
+  PRODUCTION_HOST: test-vercel-org-production.vercel.app
 
 jobs:
   deploy:
