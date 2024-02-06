@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  PRE_PRODUCTION_HOST: https://test-vercel-org-production.vercel.app
+  PRE_PRODUCTION_HOST: https://test-vercel-org-pre-production.vercel.app
   PRODUCTION_HOST: test-vercel-production.vercel.app
 
 jobs:
