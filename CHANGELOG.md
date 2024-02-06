@@ -1,3 +1,14 @@
+## [8.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v7.0.1...v8.0.0) (2024-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* add sentry
+
+### Features
+
+* add sentry ([b41f6ac](https://github.com/TOP-FASHION/test-vercel/commit/b41f6ac21c9e2ca4f196dca21ceaa4c35b2ddd81))
+
 ## [7.0.1](https://github.com/TOP-FASHION/test-vercel/compare/v7.0.0...v7.0.1) (2024-02-06)
 
 
