@@ -1,3 +1,11 @@
+## [7.0.1](https://github.com/TOP-FASHION/test-vercel/compare/v7.0.0...v7.0.1) (2024-02-06)
+
+
+### Bug Fixes
+
+* fix path ([9474381](https://github.com/TOP-FASHION/test-vercel/commit/94743815a7ca3bc4f1715ba6481356e61256c16c))
+* fix path 2 ([edee2b7](https://github.com/TOP-FASHION/test-vercel/commit/edee2b78926dc92c7b6b935bfbd1f19cae248d19))
+
 ## [7.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v6.0.0...v7.0.0) (2024-02-06)
 
 
