@@ -1,3 +1,21 @@
+## [4.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v3.0.0...v4.0.0) (2024-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* add vercel/speed-insights
+* add vercel/analytics
+
+### Features
+
+* add vercel/analytics ([d3e3ffa](https://github.com/TOP-FASHION/test-vercel/commit/d3e3ffabcee2dc063a92b5615dfa7e25cebb1851))
+* add vercel/speed-insights ([e647947](https://github.com/TOP-FASHION/test-vercel/commit/e647947a885dc13faeb053684227a84abe6e1754))
+
+
+### Bug Fixes
+
+* fix github actions ([a8abcc7](https://github.com/TOP-FASHION/test-vercel/commit/a8abcc702d8c2e25814a1dbac7dd413c6412aaf2))
+
 ## [3.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v2.14.0...v3.0.0) (2024-02-06)
 
 
