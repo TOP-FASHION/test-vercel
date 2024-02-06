@@ -45,7 +45,10 @@ jobs:
         run: mkdir .vercel && unzip build.zip -d .vercel/output
 
       - name: 'Install Vercel CLI'
-        run: npm install --global vercel@latest
+        run: npm install --global vercel@33
+
+      - name: 'List files'
+        run: ls -la
 
       - name: 'Deploy project artifacts to Vercel'
         id: vercel-deploy
@@ -53,8 +56,6 @@ jobs:
           deploymentUrl=$(vercel deploy --prod --prebuilt --archive=tgz --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }})
           echo "deployment-url=$deploymentUrl" >> $GITHUB_OUTPUT
 
-      - name: 'List files'
-        run: ls -la
 
       - name: 'Assign domains'
         run: vercel alias set ${{ steps.vercel-deploy.outputs.deployment-url }} ${{ env.PRE_PROD_HOST }} --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
