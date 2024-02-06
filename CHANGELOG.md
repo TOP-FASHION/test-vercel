@@ -1,3 +1,14 @@
+## [7.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v6.0.0...v7.0.0) (2024-02-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* add new fetch
+
+### Features
+
+* add new fetch ([5881df4](https://github.com/TOP-FASHION/test-vercel/commit/5881df459c3d297033ed410fad75c42deb236b1e))
+
 ## [6.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v5.0.0...v6.0.0) (2024-02-06)
 
 
