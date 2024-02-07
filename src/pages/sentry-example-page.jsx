@@ -1,6 +1,5 @@
 import Head from "next/head";
 import * as Sentry from "@sentry/nextjs";
-import * as atatus from 'atatus-spa';
 
 export default function Page() {
   return (
@@ -48,7 +47,6 @@ export default function Page() {
             margin: "18px",
           }}
           onClick={() => {
-            atatus.notify(new Error('Test Atatus Setup'));
             Sentry.startSpan({
               name: 'Example Frontend Span',
               op: 'test'
