@@ -2,9 +2,10 @@ import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import zipy from 'zipyai';
+import Appsignal from "@appsignal/javascript"
 
-zipy.init('71290866');
+const appsignal = new Appsignal({ key: "60967553-132c-49fd-ade4-319012762c85" })
+appsignal.demo()
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
