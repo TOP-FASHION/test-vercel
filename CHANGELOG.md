@@ -1,3 +1,24 @@
+## [9.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v8.0.0...v9.0.0) (2024-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* add appsignal
+* add zipyai
+* add atatus
+
+### Features
+
+* add appsignal ([eafd3c8](https://github.com/TOP-FASHION/test-vercel/commit/eafd3c8a53264af79d1a38ec5d6ffe97906aad8c))
+* add atatus ([a5656c1](https://github.com/TOP-FASHION/test-vercel/commit/a5656c18426b99805e1fd72c74b4f98999b1de60))
+* add atatus event ([28e35ca](https://github.com/TOP-FASHION/test-vercel/commit/28e35caa1d2e71fef196976065fbb1f9aaeaa7ea))
+* add zipyai ([639fb2d](https://github.com/TOP-FASHION/test-vercel/commit/639fb2dee50965a82648099c33b139389bbe15ca))
+
+
+### Bug Fixes
+
+* remove ([f9c0819](https://github.com/TOP-FASHION/test-vercel/commit/f9c0819547ce721e90ec47fb02b0c1ad3d8851a8))
+
 ## [8.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v7.0.1...v8.0.0) (2024-02-06)
 
 
