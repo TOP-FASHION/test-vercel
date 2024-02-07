@@ -1,3 +1,14 @@
+## [10.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v9.0.0...v10.0.0) (2024-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* update appsignal
+
+### Features
+
+* update appsignal ([5b0384d](https://github.com/TOP-FASHION/test-vercel/commit/5b0384d0c4ed880e972f8e1b89a3b3c889c367a3))
+
 ## [9.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v8.0.0...v9.0.0) (2024-02-07)
 
 
