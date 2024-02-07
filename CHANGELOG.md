@@ -1,3 +1,14 @@
+## [11.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v10.0.0...v11.0.0) (2024-02-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* add newrelic
+
+### Features
+
+* add newrelic ([150fa4f](https://github.com/TOP-FASHION/test-vercel/commit/150fa4f2a9caefa78f8cbac23e54ed7976d2152f))
+
 ## [10.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v9.0.0...v10.0.0) (2024-02-07)
 
 
