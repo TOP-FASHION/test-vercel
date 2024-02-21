@@ -1,3 +1,14 @@
+## [12.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v11.0.0...v12.0.0) (2024-02-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* add new feature
+
+### Features
+
+* add new feature ([272f23f](https://github.com/TOP-FASHION/test-vercel/commit/272f23f8e2775a8512b8934bef4758fd0e5a94fa))
+
 ## [11.0.0](https://github.com/TOP-FASHION/test-vercel/compare/v10.0.0...v11.0.0) (2024-02-07)
 
 
