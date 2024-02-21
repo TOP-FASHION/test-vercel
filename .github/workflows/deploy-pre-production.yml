@@ -4,11 +4,14 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Version'
+        description: 'Version (e.g. "1.2.0")'
         required: true
 
 env:
-  PRE_PRODUCTION_HOST: test-vercel-org-pre-production.vercel.app
+  PRE_PRODUCTION_HOST: 'test-vercel-org-pre-production.vercel.app'
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_SCOPE: '1212evgen'
 
 jobs:
   deploy:
@@ -18,11 +21,6 @@ jobs:
     environment:
       name: 'production'
       url: https://${{ env.PRE_PROD_HOST }}
-
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_SCOPE: 1212evgen
 
     steps:
       - name: 'Check repository permission for user'
@@ -39,10 +37,10 @@ jobs:
         uses: robinraju/release-downloader@v1.8
         with:
           tag: ${{ github.event.inputs.version }}
-          fileName: build.zip
+          fileName: v${{ github.event.inputs.version }}.tar.gz
 
       - name: 'Unpack build archive'
-        run: mkdir .vercel && unzip build.zip -d .vercel/output
+        run: mkdir -p .vercel/output && tar -xzf v${{ github.event.inputs.version }}.tar.gz -C .vercel/output
 
       - name: 'Install Vercel CLI'
         run: npm install --global vercel@33.2

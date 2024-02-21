@@ -4,8 +4,11 @@ on:
   workflow_dispatch:
 
 env:
-  PRE_PRODUCTION_HOST: https://test-vercel-org-pre-production.vercel.app
+  PRE_PRODUCTION_HOST: 'https://test-vercel-org-pre-production.vercel.app'
   PRODUCTION_HOST: test-vercel-org-production.vercel.app
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+  VERCEL_SCOPE: '1212evgen'
 
 jobs:
   deploy:
@@ -15,11 +18,6 @@ jobs:
     environment:
       name: 'production'
       url: https://${{ env.PRODUCTION_HOST }}
-
-    env:
-      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-      VERCEL_SCOPE: 1212evgen
 
     steps:
       - name: 'Setup Node.js v20'
