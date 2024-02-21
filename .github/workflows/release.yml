@@ -25,10 +25,26 @@ jobs:
         with:
           app-id: ${{ secrets.APP_ID }}
           private-key: ${{ secrets.PRIVATE_KEY }}
+
       - name: 'Checkout'
         uses: actions/checkout@v4
         with:
           token: ${{ steps.app-token.outputs.token }}
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 'Install NPM packages (global)'
+        run: |
+          npm install --global \
+            vercel@33.2 \
+            semantic-release@22 \
+            @semantic-release/git@10 \
+            @semantic-release/changelog@6 \
+            @semantic-release/exec@6 \
+            conventional-changelog-conventionalcommits@7 \    
 
       - name: 'Generate `semantic-release` config'
         run: |
