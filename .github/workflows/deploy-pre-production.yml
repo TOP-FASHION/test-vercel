@@ -36,7 +36,7 @@ jobs:
       - name: 'Download asset from a specific release version'
         uses: robinraju/release-downloader@v1.8
         with:
-          tag: ${{ github.event.inputs.version }}
+          tag: v${{ github.event.inputs.version }}
           fileName: v${{ github.event.inputs.version }}.tar.gz
 
       - name: 'Unpack build archive'
