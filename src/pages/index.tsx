@@ -19,7 +19,7 @@ export default function Home({product}: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
-        <div>version: {BUILD_ID}</div>
+        <div>Version: {BUILD_ID}</div>
         Home page
         <Link href="/other">Other</Link>
         <div>
