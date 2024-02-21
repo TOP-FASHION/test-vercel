@@ -6,6 +6,8 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ['latin'] })
 
+const BUILD_ID = String(process.env.BUILD_ID)
+
 export default function Home({product}: any) {
   return (
     <>
@@ -17,6 +19,7 @@ export default function Home({product}: any) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
+        <div>version: {BUILD_ID}</div>
         Home page
         <Link href="/other">Other</Link>
         <div>

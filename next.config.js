@@ -1,3 +1,8 @@
+const {
+  BUILD_ID,
+} = process.env
+
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -8,6 +13,9 @@ const nextConfig = {
         hostname: 'fakestoreapi.com',
       },
     ],
+  },
+  env: {
+    BUILD_ID,
   },
 }
 
