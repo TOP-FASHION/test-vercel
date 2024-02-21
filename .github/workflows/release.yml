@@ -8,10 +8,6 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
   VERCEL_SCOPE: '1212evgen'
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref_name }}
-  cancel-in-progress: true
-
 jobs:
   semantic:
     name: 'Determine version'
@@ -97,6 +93,7 @@ jobs:
       - name: 'Print'
         run: |
           echo "${{ needs.semantic.outputs.next_version_release }}"
+          echo "${{ needs.semantic.outputs }}"
 #      - name: 'Generate Github token'
 #        uses: actions/create-github-app-token@v1
 #        id: 'app-token'
