@@ -78,15 +78,15 @@ jobs:
           EOF
 
       - name: 'Get the nextRelease.version from semantic release'
-        run: |
-          semantic-release --dry-run
+        run: semantic-release --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: 'Capture Next Version'
-        id: release
-        run: echo "next_version_release=${{env.NEXT_RELEASE_VERSION}}" >> $GITHUB_OUTPUT
-
+        id: 'release'
+        run: |
+          echo "next_version_release=${{env.NEXT_RELEASE_VERSION}}" >> $GITHUB_OUTPUT
+          echo "${{ needs.semantic.outputs.next_version_release }}"
   release:
     name: 'Create GitHub Release'
     runs-on: ubuntu-latest
