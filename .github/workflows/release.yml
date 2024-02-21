@@ -71,7 +71,7 @@ jobs:
                 ]
               }],
               ["@semantic-release/exec", {
-                "successCmd": "echo RELEASE_VERSION=${nextRelease.version} >> $GITHUB_ENV"
+                "successCmd": "echo \"RELEASE_VERSION=${nextRelease.version}\" >> $GITHUB_ENV"
               }]
             ]
           }
