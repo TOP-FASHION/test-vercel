@@ -161,7 +161,7 @@ jobs:
               }]
             ]
           }
-          EOF    
+          EOF
 
       - name: 'Release'
         run: npx semantic-release --debug
