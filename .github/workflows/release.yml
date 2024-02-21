@@ -92,8 +92,7 @@ jobs:
     steps:
       - name: 'Print'
         run: |
-          echo "${{ needs.semantic.outputs.next_version_release }}"
-          echo "${{ needs.semantic.outputs }}"
+          echo "${{ needs.semantic.outputs.new_release_version }}"
 #      - name: 'Generate Github token'
 #        uses: actions/create-github-app-token@v1
 #        id: 'app-token'
