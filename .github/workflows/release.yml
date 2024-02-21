@@ -19,6 +19,12 @@ jobs:
     outputs:
       new_release_version: ${{ steps.release.outputs.next_version_release }}
     steps:
+      - name: 'Generate Github token'
+        uses: actions/create-github-app-token@v1
+        id: 'app-token'
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
       - name: 'Checkout'
         uses: actions/checkout@v4
         with:
