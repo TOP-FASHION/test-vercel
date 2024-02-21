@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const inter = Inter({ subsets: ['latin'] })
 
-const BUILD_ID = String(process.env.BUILD_ID)
+const BUILD_ID = String(process.env.BUILD_ENV)
 
 export default function Home({product}: any) {
   return (
