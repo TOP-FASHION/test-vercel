@@ -87,7 +87,7 @@ jobs:
           (cd .vercel/output && tar -czf ../../build.tar.gz .)
 
       - name: 'Release'
-        run: npx semantic-release
+        run: semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
