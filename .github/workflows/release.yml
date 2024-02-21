@@ -67,7 +67,8 @@ jobs:
                 ]
               }],
               ["@semantic-release/exec", {
-                "verifyReleaseCmd": "echo NEXT_RELEASE_VERSION=\${nextRelease.version} >> \$GITHUB_ENV"
+                "verifyReleaseCmd": "echo NEXT_RELEASE_VERSION=\${nextRelease.version} >> \$GITHUB_ENV",
+                "successCmd": "echo \${ nextRelease.version } > .release-version"
               }]
             ]
           }
@@ -80,90 +81,56 @@ jobs:
 
       - name: 'Capture Next Version'
         id: 'release'
-        run: |
-          echo "next_version_release=${{env.NEXT_RELEASE_VERSION}}" >> $GITHUB_OUTPUT
-          echo "${{ needs.semantic.outputs.next_version_release }}"
+        run: echo "next_version_release=${{env.NEXT_RELEASE_VERSION}}" >> $GITHUB_OUTPUT
 
   release:
     name: 'Create GitHub Release'
     runs-on: ubuntu-latest
     needs: semantic
+    if: ${{ needs.semantic.outputs.new_release_version != '' }}
 
     steps:
-      - name: 'Print'
+      - name: 'Generate Github token'
+        uses: actions/create-github-app-token@v1
+        id: 'app-token'
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.PRIVATE_KEY }}
+
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+
+      - name: 'Setup Node.js'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 'Install NPM packages (global)'
         run: |
-          echo "${{ needs.semantic.outputs.new_release_version }}"
-#      - name: 'Generate Github token'
-#        uses: actions/create-github-app-token@v1
-#        id: 'app-token'
-#        with:
-#          app-id: ${{ secrets.APP_ID }}
-#          private-key: ${{ secrets.PRIVATE_KEY }}
-#      - name: 'Checkout'
-#        uses: actions/checkout@v4
-#        with:
-#          token: ${{ steps.app-token.outputs.token }}
-#
-#      - name: 'Setup Node.js'
-#        uses: actions/setup-node@v4
-#        with:
-#          node-version: 20
-#
-#      - name: 'Install NPM packages (global)'
-#        run: |
-#          npm install --global \
-#            vercel@33.2 \
-#            semantic-release@22 \
-#            @semantic-release/git@10 \
-#            @semantic-release/changelog@6 \
-#            @semantic-release/exec@6 \
-#            conventional-changelog-conventionalcommits@7 \
-#
-#      - name: 'Pull Vercel project settings'
-#        run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
-#
-#      - name: 'Build project artifacts'
-#        run: |
-#          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
-#          (cd .vercel/output && tar -czf ../../build.tar.gz .)
-#
-#      - name: 'Generate `semantic-release` config'
-#        run: |
-#          cat <<EOF | tee .releaserc
-#          {
-#            "branches": ["main"],
-#            "plugins": [
-#              ["@semantic-release/commit-analyzer", {
-#                "preset": "conventionalcommits",
-#              }],
-#              ["@semantic-release/release-notes-generator", {
-#                "preset": "conventionalcommits",
-#                "presetConfig": {
-#                  "issuePrefixes": ["AMA-"],
-#                  "issueUrlFormat": "https://amatechs.atlassian.net/browse/{{prefix}}{{id}}"
-#                },
-#              }],
-#              "@semantic-release/changelog",
-#              "@semantic-release/npm",
-#              "@semantic-release/git",
-#              ["@semantic-release/github", {
-#                "assets": [
-#                  { "path": "build.tar.gz", "name": "\${nextRelease.gitTag}.tar.gz", "label": "Build (tar.gz)" }
-#                ]
-#              }],
-#              ["@semantic-release/exec", {
-#                "successCmd": "echo \${ nextRelease.version } > .release-version"
-#              }]
-#            ]
-#          }
-#          EOF
-#
-#      - name: 'Release'
-#        run: npx semantic-release
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#
-#      - name: 'Verify release'
-#        run: |
-#          cat .release-version 2> /dev/null | head -n 1 | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
-#            || (echo "Release is not successful." && exit 1)
+          npm install --global \
+            vercel@33.2 \
+            semantic-release@22 \
+            @semantic-release/git@10 \
+            @semantic-release/changelog@6 \
+            @semantic-release/exec@6 \
+            conventional-changelog-conventionalcommits@7 \
+
+      - name: 'Pull Vercel project settings'
+        run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+
+      - name: 'Build project artifacts'
+        run: |
+          vercel build --prod --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+          (cd .vercel/output && tar -czf ../../build.tar.gz .)
+
+      - name: 'Release'
+        run: npx semantic-release --debug
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: 'Verify release'
+        run: |
+          cat .release-version 2> /dev/null | head -n 1 | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' \
+            || (echo "Release is not successful." && exit 1)
