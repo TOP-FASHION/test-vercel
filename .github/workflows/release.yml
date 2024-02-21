@@ -81,6 +81,8 @@ jobs:
         id: release
         run: |
           echo "next_version_release=$(npx semantic-release --dry-run | grep -oP "Published release \K[0-9]+\.[0-9]+\.[0-9]+")" >> $GITHUB_OUTPUT
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Capture Next Version
         id: capture-next-version
