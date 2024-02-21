@@ -113,12 +113,8 @@ jobs:
           node-version: 20
 
       - name: 'Capture Env'
-
         run: |
           echo "BUILD_ID=${{needs.semantic.outputs.new_release_version}}" >> $GITHUB_ENV
-
-      - name: 'GITHUB_CONTEXT'
-        run: echo "$GITHUB_CONTEXT"
 
       - name: 'Install NPM packages (global)'
         run: |
@@ -132,6 +128,9 @@ jobs:
 
       - name: 'Pull Vercel project settings'
         run: vercel pull --environment=production --yes --token=${{ secrets.VERCEL_TOKEN }} --scope=${{ env.VERCEL_SCOPE }}
+
+      - name: 'GITHUB_CONTEXT'
+        run: echo "$GITHUB_CONTEXT"
 
       - name: 'Build project artifacts'
         run: |
