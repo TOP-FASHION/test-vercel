@@ -1,3 +1,10 @@
+## [12.2.0](https://github.com/TOP-FASHION/test-vercel/compare/v12.1.0...v12.2.0) (2024-02-21)
+
+
+### Features
+
+* test 19 ([b76cce7](https://github.com/TOP-FASHION/test-vercel/commit/b76cce70802ee80dbc2add1ee337462ec2bee357))
+
 ## [12.1.0](https://github.com/TOP-FASHION/test-vercel/compare/v12.0.0...v12.1.0) (2024-02-21)
 
 
