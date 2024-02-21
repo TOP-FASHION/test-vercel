@@ -71,23 +71,21 @@ jobs:
                 ]
               }],
               ["@semantic-release/exec", {
-                "verifyReleaseCmd": "echo RELEASE_VERSION=\${nextRelease.version} >> $GITHUB_ENV"
+                "verifyReleaseCmd": "echo NEXT_RELEASE_VERSION=\${nextRelease.version} >> $GITHUB_ENV"
               }]
             ]
           }
           EOF
 
       - name: 'Get the nextRelease.version from semantic release'
-        id: release
         run: |
-          echo "next_version_release=$(npx semantic-release --dry-run | grep -oP "Published release \K[0-9]+\.[0-9]+\.[0-9]+")" >> $GITHUB_OUTPUT
+          semantic-release --dry-run
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Capture Next Version
-        id: capture-next-version
-        # RELEASE_VERSION by semantic-release in previous step, see .releaserc.json
-        run: echo "NEXT_RELEASE_VERSION=${{env.RELEASE_VERSION}}" >> $GITHUB_OUTPUT
+        id: release
+        run: echo "NEXT_RELEASE_VERSION=${{env.NEXT_RELEASE_VERSION}}" >> $GITHUB_OUTPUT
 
   release:
     name: 'Create GitHub Release'
