@@ -103,5 +103,8 @@ jobs:
 
       - name: 'Check github-script'
         run: |
-          diff=&(git diff ./public/locales | grep '^[+-][^+-]')
-          git diff --quiet || (echo "::warning ::Update translations: $diff" && exit 1)
+          diff_lang=&(git diff ./public/locales | grep '^[+-][^+-]')          
+          if [ -n "$diff_lang" ]; then
+            echo "Update translations:\n{$diff_lang}"
+            exit 1
+          fi
