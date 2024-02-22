@@ -95,6 +95,15 @@ jobs:
       - name: 'Run generate translations'
         run: npm run generate:i18n
 
+      - name: Disable workflow commands
+        run: |
+          echo '::warning:: This is a warning message, to demonstrate that commands are being processed.'
+          stopMarker=$(uuidgen)
+          echo "::stop-commands::$stopMarker"
+          echo '::warning:: This will NOT be rendered as a warning, because stop-commands has been invoked.'
+          echo "::$stopMarker::"
+          echo '::warning:: This is a warning again, because stop-commands has been turned off.'
+
       - name: 'Check translations'
         run: |
           diff_lang=$(git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)')
