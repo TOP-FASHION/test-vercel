@@ -103,6 +103,6 @@ jobs:
 
       - name: 'Check github-script'
         run: |
-          git diff -U0
+          git diff -U0 --color ./public/locales | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)'
           diff=222
           git diff --quiet || (echo "::error ::Update translations: $diff" && exit 1)
