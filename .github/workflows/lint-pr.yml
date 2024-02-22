@@ -96,4 +96,9 @@ jobs:
         run: npm run generate:i18n
 
       - name: 'Check translations'
-        run: git diff ./public/locales | grep '^[+-][^+-]'
+        run: |
+          changes=$(git status ./public/locales -s)
+          if [ -n "$changes" ]; then
+            echo "::error::Translations are not synchronized. Please run 'npm run generate:i18n' command."
+            exit 1
+          fi
