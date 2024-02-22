@@ -102,6 +102,7 @@ jobs:
           echo "diff-lang=$diffLang" >> $GITHUB_OUTPUT  
 
       - name: 'Check github-script'
+        shell: bash
         run: |
           diff_lang=$(git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)') \
           git diff --quiet || (echo "::error ::Update translations:\n$diff_lang" && exit 1)
