@@ -98,7 +98,7 @@ jobs:
       - name: 'Get git diff'
         id: 'missing-translations'
         run: |
-          diffLang=$(git diff -U0)
+          diffLang=222
           echo "diff-lang=$diffLang" >> $GITHUB_OUTPUT  
 
       - name: 'Check github-script'
