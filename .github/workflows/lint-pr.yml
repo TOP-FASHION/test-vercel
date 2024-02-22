@@ -103,5 +103,4 @@ jobs:
 
       - name: 'Check github-script'
         run: |
-          diff_lang=$(git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)')
-          [ -z "$diff_lang" ] || (echo '::error ::lint produced file changes, run linter locally and try again' && exit 1)
+          git diff --quiet || (echo '::error ::lint produced file changes, run linter locally and try again' && exit 1)
