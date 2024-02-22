@@ -95,14 +95,11 @@ jobs:
       - name: 'Run generate translations'
         run: npm run generate:i18n
 
-      - name: 'Get git diff'
-        id: 'missing-translations'
+      - name: 'Check translations'
         run: |
-          diffLang=222
-          echo "diff-lang=$diffLang" >> $GITHUB_OUTPUT  
-
-      - name: 'Check github-script'
-        run: |
-          git diff -U0
-          diff=222
-          git diff --quiet || (echo "::error ::Update translations: $diff" && exit 1)
+          diff_locales=$(git diff ./public/locales | grep '^[+-][^+-]')          
+          if [ -n "$diff_locales" ]; then
+            echo "::warning::Missing translations: \\n$diff_locales"
+            echo "::error::Some translations are missing. Please add these translations in the repository"
+            exit 1
+          fi
