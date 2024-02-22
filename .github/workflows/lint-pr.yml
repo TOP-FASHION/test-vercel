@@ -95,15 +95,9 @@ jobs:
       - name: 'Run generate translations'
         run: npm run generate:i18n
 
-      - name: 'Get git diff'
-        id: 'missing-translations'
+      - name: 'Check translations'
         run: |
-          diffLang=222
-          echo "diff-lang=$diffLang" >> $GITHUB_OUTPUT  
-
-      - name: 'Check github-script'
-        run: |
-          diff_lang=&(git diff ./public/locales | grep '^[+-][^+-]')          
+          diff_lang=$(git diff ./public/locales | grep '^[+-][^+-]')          
           if [ -n "$diff_lang" ]; then
             echo "Update translations:\n{$diff_lang}"
             exit 1
