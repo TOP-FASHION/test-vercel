@@ -4,10 +4,12 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from "next/link";
 import {useEffect, useState} from "react";
+import useTranslation from "@/components/useTranslation";
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+    const {t} = useTranslation('Other')
     const [state, setState] = useState([]);
     async function getData() {
         const res = await fetch('https://fakestoreapi.com/products?limit=8');
@@ -28,6 +30,7 @@ export default function Home() {
             </Head>
             <main className={`${styles.main} ${inter.className}`}>
                 Other page
+                <>{t(`page`)}</>
                 <Link href="/">Home</Link>
                 <div>
                     {
