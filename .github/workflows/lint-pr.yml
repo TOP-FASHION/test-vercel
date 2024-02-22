@@ -98,12 +98,7 @@ jobs:
       - name: 'Check translations'
         run: |
           diff_lang=$(git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)')
-          if [[ -n $diff_lang ]]; then
-            echo "::group::git diff -U0"
-            echo "::error::Update translations:\n$diff_lang! Please run \`npm run generate:i18n\` and commit the result."
-            git diff 
-            echo "::endgroup::"
+          if [ -n "$diff_lang" ]; then
+            echo "Update translations:\n$diff_lang"
             exit 1
-          else
-            echo "min constraints file is up to date."
           fi
