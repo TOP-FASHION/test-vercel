@@ -99,7 +99,7 @@ jobs:
         run: |
           diff_lang=$(git diff ./public/locales | grep '^[+-][^+-]')          
           if [ -n "$diff_lang" ]; then
-            echo "::warning ::Missing translations: $diff_lang"
-            echo "::error ::Please add these translations and push these changes in repository"
+            echo "::warning::Missing translations: $diff_lang"
+            echo "::error::Please add these translations and push these changes in repository"
             exit 1
           fi
