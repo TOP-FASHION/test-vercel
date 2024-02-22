@@ -99,7 +99,8 @@ jobs:
         run: |
           diff_locales=$(git diff ./public/locales | grep '^[+-][^+-]')          
           if [ -n "$diff_locales" ]; then
-            echo "::warning::Missing translations: \\n$diff_locales"
-            echo "::error::Some translations are missing. Please add these translations in the repository"
+            echo "There is a difference in translations:"
+            echo "$diff_locales"
+            echo "::error::Translations are not synchronized. Please run 'npm run generate:i18n' command."
             exit 1
           fi
