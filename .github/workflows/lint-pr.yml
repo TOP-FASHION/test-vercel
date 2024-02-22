@@ -96,9 +96,13 @@ jobs:
         run: npm run generate:i18n
 
       - name: 'Check github-script'
-        uses: actions/github-script@v3
+        uses: actions/github-script@v7
         with:
           script: |
+            var diff_lang = git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)'
+            if (diff_lang) {
+              console.log('diff_lang', diff_lang)
+            }
             core.setFailed('Custom error message')
 
       - name: 'Check translations'
