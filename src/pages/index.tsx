@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ['latin'] })
 const BUILD_ID = String(process.env.BUILD_ID)
 
 export default function Home({product}: any) {
-  const {t} = useTranslation('Home')
+  const {t} = useTranslation('Home2')
   return (
     <>
       <Head>
