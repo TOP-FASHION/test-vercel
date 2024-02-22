@@ -97,7 +97,7 @@ jobs:
 
       - name: 'Check translations'
         run: |
-          diff_locales=$(git diff ./public/locales | grep '^[+-][^+-]')          
+          diff_locales="$(git diff ./public/locales | grep '^[+-][^+-]')"       
           if [ -n "$diff_locales" ]; then
             echo "There is a difference in translations:"
             echo "$diff_locales"
