@@ -3,12 +3,14 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from "next/link";
+import useTranslation from "@/components/useTranslation";
 
 const inter = Inter({ subsets: ['latin'] })
 
 const BUILD_ID = String(process.env.BUILD_ID)
 
 export default function Home({product}: any) {
+  const {t} = useTranslation('index')
   return (
     <>
       <Head>
@@ -21,6 +23,7 @@ export default function Home({product}: any) {
       <main className={`${styles.main} ${inter.className}`}>
         <div>Version: {BUILD_ID}</div>
         Home page
+        <>{t(`type`)}</>
         <Link href="/other">Other</Link>
         <div>
           <h1> Welcome to My blog gallery ssg</h1>

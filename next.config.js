@@ -1,3 +1,5 @@
+const {i18n} = require('./next-i18next.config')
+
 const {
   BUILD_ID,
 } = process.env
@@ -17,6 +19,7 @@ const nextConfig = {
   env: {
     BUILD_ID,
   },
+  i18n,
 }
 
 module.exports = nextConfig
