@@ -102,19 +102,5 @@ jobs:
           echo "diff-lang=$diffLang" >> $GITHUB_OUTPUT  
 
       - name: 'Check github-script'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            var diff_lang = ${{ steps.missing-translations.outputs.diff-lang }}
-            if (diff_lang) {
-              console.log('diff_lang', diff_lang)
-            }
-            core.setFailed('Custom error message')
-
-      - name: 'Check translations'
         run: |
-          diff_lang=$(git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)')
-          if [ -n "$diff_lang" ]; then
-            echo "::warning:: Update translations:\n$diff_lang"
-            exit 1
-          fi
+          (echo '::error ::lint produced file changes, run linter locally and try again' && exit 1)
