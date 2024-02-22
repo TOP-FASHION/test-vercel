@@ -22,7 +22,7 @@ export default function Home({product}: any) {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <div>Version: {BUILD_ID}</div>
-        Home page new new
+        Home page
         <>{t(`type`)}</>
         <Link href="/other">Other</Link>
         <div>
