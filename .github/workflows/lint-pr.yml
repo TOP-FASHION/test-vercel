@@ -96,7 +96,6 @@ jobs:
         run: npm run generate:i18n
 
       - name: 'Check translations'
-        shell: bash
         run: |
           diff_lang=$(git diff ./public/locales | grep '^[+-][^+-]')          
           if [ -n "$diff_lang" ]; then
