@@ -95,12 +95,17 @@ jobs:
       - name: 'Run generate translations'
         run: npm run generate:i18n
 
+      - name: 'Get git diff'
+        id: 'missing-translations'
+        run: |
+          diffLang=$(git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)')
+          echo "diff-lang=$diffLang" >> $GITHUB_OUTPUT  
+
       - name: 'Check github-script'
         uses: actions/github-script@v7
         with:
           script: |
-            const execa = require('execa')
-            var diff_lang = await execa("git diff -U0") 
+            var diff_lang = ${{ steps.missing-translations.outputs.diff-lang }}
             if (diff_lang) {
               console.log('diff_lang', diff_lang)
             }
