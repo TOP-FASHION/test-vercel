@@ -104,4 +104,5 @@ jobs:
       - name: 'Check github-script'
         run: >-
           diff_lang=$(git diff -U0 --color | grep '^\e\[[^m]*m[-+]' | grep -Ev '(--- a/|\+\+\+ b/)')
-          git diff --quiet || (echo "::error ::Update translations: $diff_lang" && exit 1)
+          diff=222
+          git diff --quiet || (echo "::error ::Update translations: $diff" && exit 1)
